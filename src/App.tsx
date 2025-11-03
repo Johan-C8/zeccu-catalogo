@@ -8,6 +8,7 @@ import { BarraNavegacion } from './components/BarraNavegacion'
 import { TarjetaPelicula } from './components/TarjetaPelicula'
 import { ModalDetalle } from './components/ModalDetalle'
 import { FormularioAgregar } from './components/FormularioAgregar'
+import { FondoAurora } from './components/FondoAurora' // ← AGREGAR ESTA LÍNEA
 import './styles.css'
 
 function App() {
@@ -30,7 +31,6 @@ function App() {
   }
 
   const agregarPelicula = async (titulo: string, categoria: string) => {
-    // Determinar el estado basado en la categoría seleccionada
     let estado: 'pendiente' | 'vista' | 'en_progreso' = 'pendiente'
     if (categoria === 'Vistas') {
       estado = 'vista'
@@ -44,7 +44,7 @@ function App() {
       estrellas_amarillas: 0,
       descripcion: 'Agrega una descripción aquí.',
       portada: `https://via.placeholder.com/300x450?text=${encodeURIComponent(titulo)}`,
-      estado: estado, // Usamos la variable con el tipo correcto
+      estado: estado,
       fecha_agregada: new Date().toISOString()
     }
 
@@ -72,11 +72,14 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen relative text-white flex flex-col bg-black">
+    <div className="min-h-screen relative text-white flex flex-col bg-black overflow-hidden">
+      {/* AGREGAR EL FONDO AQUÍ */}
+      <FondoAurora />
+      
       <Header onVolverInicio={limpiarFiltros} />
       <BarraNavegacion filtro={filtro} setFiltro={setFiltro} />
 
-      <main className="flex-1 px-6 py-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 px-6 py-8 max-w-7xl mx-auto w-full relative z-10">
         {/* Barra de búsqueda */}
         <div className="mb-8 flex justify-center">
           <div className="relative w-full max-w-lg">
@@ -84,7 +87,7 @@ function App() {
               placeholder="BUSCAR TÍTULOS..." 
               value={busqueda} 
               onChange={e => setBusqueda(e.target.value)}
-              className="w-full px-6 py-4 text-center bg-black-40 border-2 border-cyan-50 rounded-2xl focus-outline text-white placeholder-cyan font-medium shadow-input"
+              className="w-full px-6 py-4 text-center bg-black-40 border-2 border-cyan-50 rounded-2xl focus-outline text-white placeholder-cyan font-medium shadow-input backdrop-blur"
             />
             {busqueda && (
               <button
@@ -103,8 +106,8 @@ function App() {
         ) : (
           <>
             {filtro !== 'Todas' || busqueda ? (
-              <div className="categoria-destacada p-8 mx-6 my-8">
-                <h2 className="text-4xl font-black text-center mb-8">
+              <div className="categoria-destacada p-8 mx-6 my-8 backdrop-blur">
+                <h2 className="text-4xl font-black text-center mb-8 neon-glow">
                   {filtro !== 'Todas' ? filtro.toUpperCase() : 'RESULTADOS DE BÚSQUEDA'}
                 </h2>
                 <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-3 xl-grid-cols-4 gap-6 justify-items-center">
@@ -126,7 +129,7 @@ function App() {
                   
                   return peliculasCategoria.length > 0 ? (
                     <section key={categoria.nombre} className="mb-12">
-                      <h2 className="text-3xl font-bold mb-6 text-white">
+                      <h2 className="text-3xl font-bold mb-6 text-white neon-section">
                         {categoria.nombre}
                       </h2>
                       <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
@@ -148,7 +151,7 @@ function App() {
       </main>
 
       {/* Footer con formulario */}
-      <footer className="bg-black-40 border-t border-cyan py-12 px-6">
+      <footer className="bg-black-40 border-t border-cyan py-12 px-6 backdrop-blur relative z-10">
         <div className="max-w-4xl mx-auto">
           <FormularioAgregar onAgregar={agregarPelicula} />
           <p className="mt-6 text-center text-sm text-cyan-60">
