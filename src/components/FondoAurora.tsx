@@ -2,17 +2,17 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 
 export const FondoAurora: React.FC = () => (
-  <div className="absolute inset-0 -z-10 bg-black overflow-hidden">
+  <div className="fondo-aurora">
     {/* Estrellas */}
     {[...Array(80)].map((_, i) => (
       <motion.div
         key={`star-${i}`}
-        className="absolute bg-white rounded-full"
+        className="estrella"
         style={{
-          width: Math.random() * 2 + 1,
-          height: Math.random() * 2 + 1,
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
+          width: `${Math.random() * 2 + 1}px`,
+          height: `${Math.random() * 2 + 1}px`,
         }}
         animate={{ opacity: [0.2, 0.8, 0.2] }}
         transition={{ 
@@ -23,16 +23,18 @@ export const FondoAurora: React.FC = () => (
       />
     ))}
   
-    {/* Auroras */}
+    {/* Auroras principales */}
     {[...Array(4)].map((_, i) => (
       <motion.div
         key={`aurora-${i}`}
-        className="absolute h-[600px] w-[1000px] opacity-20 blur-[60px]"
+        className="aurora"
         style={{
-          background: `linear-gradient(135deg, ${i % 2 === 0 ? '#003366, #004488, #002244' : '#330066, #220044, #110033'})`,
           left: `${(i * 25) % 100}%`, 
           top: `${(i * 20) % 100}%`, 
-          rotate: Math.random() * 30 - 15,
+          transform: `rotate(${Math.random() * 30 - 15}deg)`,
+          background: i % 2 === 0 
+            ? 'linear-gradient(135deg, #003366, #004488, #002244)' 
+            : 'linear-gradient(135deg, #330066, #220044, #110033)'
         }}
         animate={{
           x: [Math.random() * -100, Math.random() * 100, Math.random() * -100],
@@ -53,9 +55,8 @@ export const FondoAurora: React.FC = () => (
     {[...Array(3)].map((_, i) => (
       <motion.div
         key={`purple-aurora-${i}`}
-        className="absolute h-[500px] w-[800px] opacity-15 blur-[50px]"
+        className="aurora-purple"
         style={{ 
-          background: `linear-gradient(135deg, #1a0033, #330066, #000033)`, 
           left: `${Math.random() * 100}%`, 
           top: `${Math.random() * 100}%` 
         }}
@@ -74,15 +75,15 @@ export const FondoAurora: React.FC = () => (
       />
     ))}
   
-    {/* Gradientes adicionales */}
+    {/* Gradiente animado */}
     <motion.div
-      className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-cyan-900/5"
+      className="gradiente-animado"
       animate={{ opacity: [0.05, 0.15, 0.05] }}
       transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
     />
   
-    {/* Overlays para mejor contraste */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/40" />
-    <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+    {/* Overlays de gradiente */}
+    <div className="overlay-top" />
+    <div className="overlay-sides" />
   </div>
 )
