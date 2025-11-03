@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ onVolverInicio }) => (
       ZEECCU
     </motion.h1>
     <p className="mt-4 text-lg text-cyan-300">
-      CATALOGO PERSONAL DE SERIES Y PELICULAS
+      CATALOGOooo PERSONAL DE SERIES Y PELICULAS
     </p>
   </header>
 );
