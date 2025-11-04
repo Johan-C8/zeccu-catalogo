@@ -8,23 +8,22 @@
 
 body {
   font-family: 'Orbitron', sans-serif;
-  background: #000;
+  background: transparent;
   color: white;
   overflow-x: hidden;
 }
 
 /* =============================================================================
-   ESTILOS DEL FONDO AURORA
+   FONDO AURORA
    ============================================================================= */
-
 .fondo-aurora {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -10;
-  background: #000000;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 50%, #000022, #000000);
   overflow: hidden;
 }
 
@@ -70,12 +69,17 @@ body {
   pointer-events: none;
 }
 
-.overlay-top {
+.overlay-top,
+.overlay-sides {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none;
+}
+
+.overlay-top {
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.4) 0%,
@@ -83,15 +87,9 @@ body {
     transparent 70%,
     rgba(0, 0, 0, 0.4) 100%
   );
-  pointer-events: none;
 }
 
 .overlay-sides {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0.3) 0%,
@@ -99,7 +97,6 @@ body {
     transparent 80%,
     rgba(0, 0, 0, 0.3) 100%
   );
-  pointer-events: none;
 }
 
 /* Efectos de partículas adicionales */
@@ -451,4 +448,902 @@ html {
 ::-moz-selection {
   background: rgba(0, 255, 247, 0.3);
   color: white;
+}
+
+
+/* Estilos específicos para el Header */
+.neon-cyan {
+  text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7, 0 0 15px #00fff7;
+}
+
+/* Efectos hover para botones */
+.hover\:shadow-\[0_0_20px_rgba\(0\,255\,247\,0\.4\)\]:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.4);
+}
+
+/* Utilidades de texto adicionales */
+.font-semibold {
+  font-weight: 600;
+}
+
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+
+/* Asegurar que los componentes estén visibles sobre el fondo */
+.relative\.z-10 {
+  position: relative;
+  z-index: 10;
+}
+
+/* Animaciones para el título */
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.title-pulse {
+  animation: titlePulse 4s ease-in-out infinite;
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 768px) {
+  .px-6 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .gap-4 {
+    gap: 12px;
+  }
+  
+  .text-4xl {
+    font-size: 32px;
+  }
+  
+  .text-lg {
+    font-size: 16px;
+  }
+}
+
+/* Mejorar legibilidad del texto sobre el fondo */
+.text-white {
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.text-white-80 {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos para el contenedor principal */
+.contenido-principal {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =============================================================================
+   ESTILOS DE CARTEL DE CINE PARA EL HEADER
+   ============================================================================= */
+
+/* Marco principal del cartel */
+.cine-marco {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a, #000000);
+  border: 4px solid #8B4513;
+  border-radius: 20px;
+  padding: 30px 50px;
+  box-shadow: 
+    0 0 60px rgba(139, 69, 19, 0.6),
+    inset 0 0 40px rgba(255, 215, 0, 0.1),
+    0 0 0 2px #D4AF37,
+    0 0 0 6px #8B4513;
+  backdrop-filter: blur(10px);
+  margin-bottom: 30px;
+}
+
+/* Luces del marco superior e inferior */
+.cine-luces-top,
+.cine-luces-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.cine-luces-top {
+  top: -4px;
+}
+
+.cine-luces-bottom {
+  bottom: -4px;
+}
+
+.cine-luz {
+  width: 6px;
+  height: 6px;
+  background: #FFD700;
+  border-radius: 50%;
+  animation: luzParpadeo 2s ease-in-out infinite;
+  box-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
+}
+
+@keyframes luzParpadeo {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Contenido del cartel */
+.cine-cartel {
+  position: relative;
+  z-index: 2;
+}
+
+/* Efecto de proyector */
+.cine-proyector {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(255, 215, 0, 0.3) 30%, 
+    rgba(255, 165, 0, 0.1) 70%, 
+    transparent 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+  filter: blur(10px);
+  animation: proyectorBarrido 8s ease-in-out infinite;
+}
+
+@keyframes proyectorBarrido {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) rotate(-2deg); }
+  50% { opacity: 0.6; transform: translateX(-50%) rotate(2deg); }
+}
+
+/* Título principal con efecto 3D */
+.cine-titulo {
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #FFD700;
+  text-shadow: 
+    0 0 20px #FFD700,
+    0 0 40px #FFA500,
+    0 0 60px #FF8C00,
+    0 2px 0 #B8860B,
+    0 4px 0 #8B4513,
+    0 6px 0 #654321;
+  transition: all 0.3s ease;
+}
+
+.cine-titulo-text {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00, #FFD700);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: tituloBrillo 3s ease-in-out infinite;
+}
+
+.cine-titulo-sombra {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  color: transparent;
+  text-shadow: 
+    0 0 2px rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(139, 69, 19, 0.6);
+  z-index: 1;
+}
+
+@keyframes tituloBrillo {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: hue-rotate(20deg);
+  }
+}
+
+/* Subtítulo */
+.cine-subtitulo {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  color: #C0C0C0;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.3);
+  animation: subtituloParpadeo 4s ease-in-out infinite;
+}
+
+@keyframes subtituloParpadeo {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Detalles decorativos */
+.cine-detalles {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+}
+
+.cine-clapboard {
+  width: 30px;
+  height: 40px;
+  background: linear-gradient(45deg, #000000, #333333);
+  border: 2px solid #8B4513;
+  border-radius: 4px;
+  position: relative;
+  transform: rotate(15deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cine-clap-line {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  height: 2px;
+  background: #FFD700;
+}
+
+.cine-clap-line:nth-child(1) {
+  top: 10px;
+}
+
+.cine-clap-line:nth-child(2) {
+  top: 20px;
+}
+
+/* Luces laterales */
+.cine-luz-lateral {
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+  filter: blur(20px);
+  animation: luzLateral 6s ease-in-out infinite;
+}
+
+.cine-luz-lateral.izquierda {
+  left: -80px;
+  transform: translateY(-50%) rotate(-10deg);
+}
+
+.cine-luz-lateral.derecha {
+  right: -80px;
+  transform: translateY(-50%) rotate(10deg);
+}
+
+@keyframes luzLateral {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Texto descriptivo */
+.cine-descripcion {
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: #87CEEB;
+  text-transform: uppercase;
+  margin-top: 20px;
+  text-shadow: 
+    0 0 10px rgba(135, 206, 235, 0.5),
+    0 0 20px rgba(0, 255, 247, 0.3);
+  animation: descripcionFlotar 5s ease-in-out infinite;
+}
+
+@keyframes descripcionFlotar {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Efectos de partículas doradas */
+.cine-particulas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.cine-particula {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FFD700;
+  border-radius: 50%;
+  animation: particulaFlotar 6s linear infinite;
+  box-shadow: 0 0 8px #FFD700;
+}
+
+@keyframes particulaFlotar {
+  0% {
+    transform: translateY(100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cine-marco {
+    padding: 20px 30px;
+  }
+  
+  .cine-titulo {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+  }
+  
+  .cine-subtitulo {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+  }
+  
+  .cine-descripcion {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .cine-detalles {
+    display: none;
+  }
+  
+  .cine-luz-lateral {
+    width: 50px;
+    height: 100px;
+  }
+  
+  .cine-luz-lateral.izquierda {
+    left: -40px;
+  }
+  
+  .cine-luz-lateral.derecha {
+    right: -40px;
+  }
+}
+
+
+/* =============================================================================
+   ESTILOS CABINA AURORA - FONDO FOTOGRÁFICO
+   ============================================================================= */
+
+.fondo-cabin-aurora {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -20;
+  overflow: hidden;
+  background: #0a0a1a;
+}
+
+/* INTERIOR DE LA CABINA */
+.interior-cabina {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Paredes de madera */
+.pared-madera {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  background: 
+    linear-gradient(90deg, #3a2818 0%, #5a3c20 50%, #3a2818 100%),
+    repeating-linear-gradient(90deg,
+      transparent 0px,
+      transparent 95px,
+      rgba(40, 20, 10, 0.3) 95px,
+      rgba(40, 20, 10, 0.3) 100px);
+  opacity: 0.8;
+}
+
+.pared-madera.izquierda {
+  left: 0;
+}
+
+.pared-madera.derecha {
+  right: 0;
+}
+
+.techo-madera {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 30%;
+  background: 
+    linear-gradient(180deg, #2a1808 0%, #3a2818 100%),
+    repeating-linear-gradient(90deg,
+      transparent 0px,
+      transparent 98px,
+      rgba(30, 15, 5, 0.4) 98px,
+      rgba(30, 15, 5, 0.4) 100px);
+  opacity: 0.9;
+}
+
+/* Suelo de madera */
+.suelo-madera {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 25%;
+  background: 
+    linear-gradient(0deg, #1a1008 0%, #3a2818 100%),
+    repeating-linear-gradient(90deg,
+      transparent 0px,
+      transparent 95px,
+      rgba(20, 10, 5, 0.4) 95px,
+      rgba(20, 10, 5, 0.4) 100px);
+  opacity: 0.9;
+  transform: perspective(500px) rotateX(60deg);
+  transform-origin: bottom;
+}
+
+/* Ambiente cálido */
+.ambiente-calido {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 30% 70%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(160, 82, 45, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* VENTANAL PANORÁMICO */
+.ventanal-panoramico {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  right: 20%;
+  height: 45%;
+  background: 
+    radial-gradient(ellipse at 50% 40%, #1a1a3a 0%, #0a0a2a 60%, #050515 100%);
+  overflow: hidden;
+}
+
+/* AURORA BOREAL EXTERIOR */
+.aurora-exterior {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  overflow: hidden;
+}
+
+.capa-aurora {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  right: -10%;
+  height: 100%;
+  filter: blur(30px);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.capa-aurora.principal {
+  height: 80%;
+  animation: danzaAurora 20s ease-in-out infinite;
+}
+
+.capa-aurora.secundaria {
+  top: 20%;
+  height: 60%;
+  background: linear-gradient(90deg, 
+    rgba(0, 255, 200, 0.6) 0%, 
+    rgba(150, 0, 255, 0.5) 50%, 
+    rgba(0, 200, 255, 0.6) 100%);
+  filter: blur(25px);
+}
+
+@keyframes danzaAurora {
+  0%, 100% { 
+    transform: translateY(0px) skew(0deg);
+    filter: blur(30px) hue-rotate(0deg);
+  }
+  33% { 
+    transform: translateY(-15px) skew(3deg);
+    filter: blur(35px) hue-rotate(120deg);
+  }
+  66% { 
+    transform: translateY(10px) skew(-2deg);
+    filter: blur(28px) hue-rotate(240deg);
+  }
+}
+
+/* MONTAÑAS NEVADAS */
+.montanas-nevadas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+}
+
+.cadena-montanosa {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    linear-gradient(75deg, transparent 40%, #1a1a2a 41%, #1a1a2a 50%, transparent 51%),
+    linear-gradient(-75deg, transparent 40%, #1a1a2a 41%, #1a1a2a 50%, transparent 51%);
+  background-size: 300px 100%;
+  background-repeat: repeat-x;
+  opacity: 0.9;
+}
+
+.cadena-montanosa.lejana {
+  bottom: 20%;
+  height: 60%;
+  opacity: 0.6;
+  filter: blur(2px);
+}
+
+/* ESTRELLAS */
+.estrella-boreal {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 6px white,
+    0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+/* REFLEJO EN EL CRISTAL */
+.reflejo-cristal {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  right: 20%;
+  height: 45%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(0, 255, 150, 0.1) 20%, 
+    rgba(0, 200, 255, 0.15) 50%, 
+    rgba(150, 0, 255, 0.1) 80%, 
+    transparent 100%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* LUCES FOX DORADAS */
+.luz-fox-dorada {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(25px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: all 0.15s ease-out;
+}
+
+.luz-fox-dorada.principal {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, 
+    rgba(255, 215, 0, 0.4) 0%, 
+    rgba(255, 165, 0, 0.3) 30%, 
+    transparent 70%);
+  opacity: 0.5;
+}
+
+.luz-fox-dorada.secundaria {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, 
+    rgba(255, 235, 100, 0.3) 0%, 
+    rgba(255, 200, 50, 0.2) 50%, 
+    transparent 70%);
+  opacity: 0.4;
+}
+
+/* POLVO ATMOSFÉRICO */
+.polvo-atmosferico {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.particula-polvo {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* =============================================================================
+   HEADER - PARED DE LADRILLO RÚSTICA
+   ============================================================================= */
+
+.header-pared-ladrillo {
+  position: relative;
+  padding: 60px 20px 40px 20px;
+  background: 
+    linear-gradient(135deg, #8B4513 0%, #A0522D 30%, #8B4513 70%, #654321 100%);
+  border-bottom: 5px solid #5D4037;
+  box-shadow: 
+    inset 0 -15px 30px rgba(0, 0, 0, 0.6),
+    0 8px 40px rgba(0, 0, 0, 0.8);
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+/* TEXTURA DE LADRILLO */
+.textura-ladrillo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 79px, rgba(120, 60, 30, 0.3) 79px, rgba(120, 60, 30, 0.3) 81px, transparent 81px),
+    linear-gradient(0deg, transparent 39px, rgba(100, 50, 25, 0.4) 39px, rgba(100, 50, 25, 0.4) 41px, transparent 41px);
+  background-size: 80px 40px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ILUMINACIÓN AMBIENTAL */
+.luz-ambiental-pared {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 20%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* REFLEJO AURORA EN PARED */
+.reflejo-aurora-pared {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(0, 255, 150, 0.05) 20%, 
+    rgba(0, 200, 255, 0.08) 50%, 
+    rgba(150, 0, 255, 0.05) 80%, 
+    transparent 100%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+/* CONTENEDOR DEL CARTEL */
+.contenedor-cartel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARTEL RÚSTICO */
+.cartel-rustico {
+  position: relative;
+  z-index: 10;
+}
+
+.marco-vintage {
+  position: relative;
+  background: linear-gradient(145deg, #5D4037, #3E2723);
+  border: 8px solid #4E342E;
+  border-radius: 12px;
+  padding: 30px 50px;
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 2px #6D4C41,
+    0 0 0 6px #4E342E;
+}
+
+/* CLAVOS DECORATIVOS */
+.clavo {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #C0C0C0, #A0A0A0);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.clavo.esquina.sup-izq { top: 10px; left: 10px; }
+.clavo.esquina.sup-der { top: 10px; right: 10px; }
+.clavo.esquina.inf-izq { bottom: 10px; left: 10px; }
+.clavo.esquina.inf-der { bottom: 10px; right: 10px; }
+
+/* PLACA DE MADERA */
+.placa-madera {
+  position: relative;
+  background: 
+    linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #8B4513 100%),
+    repeating-linear-gradient(45deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(60, 30, 10, 0.2) 5px,
+      rgba(60, 30, 10, 0.2) 6px);
+  padding: 40px 60px;
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.4),
+    0 5px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* TEXTO ZEECCU VINTAGE */
+.texto-zeccu-vintage {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FFD700;
+  text-shadow: 
+    0 0 20px #FFD700,
+    0 0 40px #FFA500,
+    0 2px 0 #B8860B,
+    0 4px 0 #8B4513,
+    0 6px 0 #654321;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00, #FFD700);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brilloOro 4s ease-in-out infinite;
+}
+
+.sombra-texto {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  color: transparent;
+  text-shadow: 
+    0 0 2px rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(139, 69, 19, 0.6);
+  z-index: -1;
+}
+
+@keyframes brilloOro {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: hue-rotate(10deg);
+  }
+}
+
+/* EFECTO DESGASTE */
+.efecto-desgaste {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, transparent 10%, rgba(0, 0, 0, 0.2) 11%, transparent 12%),
+    radial-gradient(circle at 80% 70%, transparent 8%, rgba(0, 0, 0, 0.15) 9%, transparent 10%);
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+/* SOMBRA PROYECTADA */
+.sombra-proyectada {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  filter: blur(15px);
+  z-index: -1;
+}
+
+/* LÁMPARAS VINTAGE */
+.lampara-vintage {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(180deg, #C0C0C0, #A0A0A0);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 
+    inset 0 -10px 20px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.lampara-vintage.izquierda {
+  left: 25%;
+}
+
+.lampara-vintage.derecha {
+  right: 25%;
+}
+
+.lampara-vintage::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 15px;
+  background: #808080;
+}
+
+.lampara-vintage::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 10px;
+  background: radial-gradient(ellipse, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  filter: blur(5px);
 }
